@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fremtidens Foredrag — Manfred Conrath</title>
+    <meta name="description" content="Oplæg og workshops om AI, teknologi og undervisning. Manfred Conrath hjælper skoler, undervisere, ledere og organisationer med at forstå kunstig intelligens og teknologiforståelse.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-bg: #f8f9fa;
+            --color-surface: #ffffff;
+            --color-text: #1a1a2e;
+            --color-text-muted: #555;
+            --color-accent: #2d3a8c;
+            --color-accent-light: #4a5acf;
+            --color-accent-subtle: #eef0ff;
+            --color-border: #e5e7eb;
+            --color-gradient-start: #1a1a2e;
+            --color-gradient-end: #2d3a8c;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --max-width: 1100px;
+            --radius: 12px;
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--font);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: var(--color-accent); text-decoration: none; }
+        a:hover { color: var(--color-accent-light); }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            transition: box-shadow 0.3s;
+        }
+        .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+        .nav-inner {
+            max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+        .nav-logo {
+            font-weight: 700; font-size: 1.15rem; color: var(--color-text);
+            letter-spacing: -0.02em;
+        }
+        .nav-logo span { color: var(--color-accent); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            color: var(--color-text-muted); font-size: 0.9rem; font-weight: 500;
+            transition: color 0.2s; position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--color-text); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--color-accent); transition: width 0.2s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Mobile menu */
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span {
+            display: block; width: 24px; height: 2px; background: var(--color-text);
+            margin: 6px 0; transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+            color: #fff; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(74,90,207,0.3) 0%, transparent 60%);
+        }
+        .hero-content { position: relative; z-index: 1; padding: 120px 0 80px; }
+        .hero-eyebrow {
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(255,255,255,0.7); margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.15;
+            letter-spacing: -0.03em; margin-bottom: 24px; max-width: 720px;
+        }
+        .hero p {
+            font-size: 1.15rem; line-height: 1.8; color: rgba(255,255,255,0.85);
+            max-width: 580px; margin-bottom: 40px;
+        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* Hero tags */
+        .hero-tags { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 16px; border-radius: 100px;
+            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.9);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+            transition: all 0.2s; cursor: pointer; border: none;
+        }
+        .btn-primary { background: #fff; color: var(--color-accent); }
+        .btn-primary:hover { background: var(--color-accent-subtle); color: var(--color-accent); transform: translateY(-1px); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+        .btn-outline:hover { border-color: #fff; color: #fff; }
+        .btn-accent { background: var(--color-accent); color: #fff; }
+        .btn-accent:hover { background: var(--color-accent-light); color: #fff; transform: translateY(-1px); }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 100px 0; }
+        .section-label {
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--color-accent); margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
+            letter-spacing: -0.02em; margin-bottom: 20px; line-height: 1.2;
+        }
+        .section-desc {
+            font-size: 1.05rem; color: var(--color-text-muted); max-width: 620px; margin-bottom: 48px;
+        }
+
+        /* ===== SERVICES (3 cards) ===== */
+        .services { background: var(--color-surface); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .service-card {
+            padding: 36px; border: 1px solid var(--color-border);
+            border-radius: var(--radius); transition: all 0.3s; background: var(--color-bg);
+        }
+        .service-card:hover { border-color: var(--color-accent); box-shadow: 0 8px 30px rgba(45,58,140,0.08); transform: translateY(-2px); }
+        .service-icon {
+            width: 52px; height: 52px; border-radius: 12px; background: var(--color-accent-subtle);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .service-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
+        .service-card p { font-size: 0.95rem; color: var(--color-text-muted); }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: start;
+        }
+        .about-image-wrapper {
+            position: sticky; top: 100px;
+        }
+        .about-image {
+            width: 100%; aspect-ratio: 3/4; border-radius: var(--radius);
+            background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-text-muted); font-size: 0.9rem; overflow: hidden;
+        }
+        .about-image img { width: 100%; height: 100%; object-fit: cover; }
+        .about-meta {
+            margin-top: 16px; padding: 16px; background: var(--color-accent-subtle);
+            border-radius: 8px; font-size: 0.88rem;
+        }
+        .about-meta strong { display: block; color: var(--color-text); margin-bottom: 4px; }
+        .about-meta span { color: var(--color-text-muted); }
+        .about-text h2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
+        .about-text p { color: var(--color-text-muted); margin-bottom: 16px; font-size: 1.02rem; }
+        .about-values {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+            margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--color-border);
+        }
+        .value-item { text-align: center; padding: 16px 8px; }
+        .value-icon { font-size: 1.5rem; margin-bottom: 8px; }
+        .value-label { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
+        .value-desc { font-size: 0.8rem; color: var(--color-text-muted); }
+
+        /* ===== TALKS ===== */
+        .talks { background: var(--color-surface); }
+        .talks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .talk-card {
+            background: var(--color-bg); border: 1px solid var(--color-border);
+            border-radius: var(--radius); padding: 36px; transition: all 0.3s;
+            display: flex; flex-direction: column;
+        }
+        .talk-card:hover { border-color: var(--color-accent); box-shadow: 0 8px 30px rgba(45,58,140,0.08); transform: translateY(-2px); }
+        .talk-icon {
+            width: 48px; height: 48px; border-radius: 10px; background: var(--color-accent-subtle);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        .talk-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; }
+        .talk-card p { font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 16px; flex-grow: 1; }
+        .talk-meta { font-size: 0.8rem; color: var(--color-accent); font-weight: 500; }
+
+        /* ===== AUDIENCE ===== */
+        .audience-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+        .audience-card {
+            padding: 32px; background: var(--color-surface);
+            border: 1px solid var(--color-border); border-radius: var(--radius);
+        }
+        .audience-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+        .audience-card p { font-size: 0.9rem; color: var(--color-text-muted); }
+
+        /* ===== RESOURCES ===== */
+        .resources { background: var(--color-surface); }
+        .resource-banner {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 40px 48px; background: var(--color-accent-subtle);
+            border-radius: var(--radius); gap: 32px;
+        }
+        .resource-banner h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+        .resource-banner p { font-size: 0.95rem; color: var(--color-text-muted); }
+
+        /* ===== CTA ===== */
+        .cta {
+            background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+            color: #fff; text-align: center; padding: 80px 0;
+        }
+        .cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+        .cta p { color: rgba(255,255,255,0.8); margin-bottom: 32px; font-size: 1.05rem; }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--color-surface); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+        .contact-info h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; margin-top: 24px; }
+        .contact-info h3:first-child { margin-top: 0; }
+        .contact-info p { color: var(--color-text-muted); font-size: 0.95rem; }
+        .contact-info a { color: var(--color-accent); font-weight: 500; }
+        .contact-cvr { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--color-border); font-size: 0.85rem; color: var(--color-text-muted); }
+
+        .contact-form { display: flex; flex-direction: column; gap: 16px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px 16px; border: 1px solid var(--color-border);
+            border-radius: 8px; font-family: var(--font); font-size: 0.95rem;
+            transition: border-color 0.2s; background: var(--color-bg);
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--color-accent); }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 40px 0; border-top: 1px solid var(--color-border);
+            font-size: 0.85rem; color: var(--color-text-muted);
+        }
+        .footer-inner {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { color: var(--color-text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--color-accent); }
+        /* LinkedIn icon */
+        .linkedin-icon { display: inline-flex; align-items: center; }
+        .linkedin-icon svg { width: 20px; height: 20px; fill: currentColor; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .services-grid, .audience-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column; position: absolute;
+                top: 72px; left: 0; right: 0; background: var(--color-surface);
+                padding: 24px; gap: 20px; border-bottom: 1px solid var(--color-border);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            }
+            .nav-toggle { display: block; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .about-image-wrapper { position: static; }
+            .about-image { max-height: 350px; aspect-ratio: auto; }
+            .hero { min-height: auto; }
+            .hero-content { padding: 120px 0 60px; }
+            section { padding: 64px 0; }
+            .resource-banner { flex-direction: column; text-align: center; padding: 32px; }
+            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Fremtidens<span>Foredrag</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#oplaeg">Opl&aelig;g</a></li>
+                <li><a href="#om">Om mig</a></li>
+                <li><a href="#foredrag">Foredrag</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="container hero-content">
+            <p class="hero-eyebrow">Manfred Conrath &mdash; Foredragsholder &amp; p&aelig;dagogisk konsulent</p>
+            <h1>Opl&aelig;g og workshops om AI, teknologi og undervisning</h1>
+            <p>Jeg hj&aelig;lper skoler, undervisere, ledere og organisationer med at forst&aring; kunstig intelligens, teknologiforst&aring;else og de valg, der f&oslash;lger med.</p>
+            <div class="hero-tags">
+                <span class="hero-tag">Praksis&shy;n&aelig;r</span>
+                <span class="hero-tag">Tydelig</span>
+                <span class="hero-tag">Relevant</span>
+            </div>
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn btn-primary">Book et opl&aelig;g</a>
+                <a href="#foredrag" class="btn btn-outline">Se emner</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="oplaeg">
+        <div class="container">
+            <p class="section-label">Det kan du booke</p>
+            <h2 class="section-title">Tre formater &mdash; tilpasset jeres behov</h2>
+            <p class="section-desc">Uanset om I &oslash;nsker inspiration, hands-on afpr&oslash;vning eller strategisk sparring, finder vi det format der passer jer bedst.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">&#127891;</div>
+                    <h3>Foredrag</h3>
+                    <p>Inspirerende opl&aelig;g om AI, teknologi og undervisningens fremtid. Velegnet til p&aelig;dagogiske dage, konferencer og personalem&oslash;der.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#128736;</div>
+                    <h3>Workshops</h3>
+                    <p>Praktiske forl&oslash;b hvor deltagerne f&aring;r mulighed for at pr&oslash;ve teknologier som AI og f&aring; konkrete id&eacute;er til, hvordan de kan bruges.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#128172;</div>
+                    <h3>Sparring</h3>
+                    <p>M&aring;lrettet r&aring;dgivning til skoler, ledelser og organisationer, der &oslash;nsker at integrere teknologi mere effektivt i deres praksis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="om">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <div class="about-image">
+                        <img src="manfred.jpg" alt="Manfred Conrath — Foredragsholder og pædagogisk konsulent">
+                    </div>
+                    <div class="about-meta">
+                        <strong>Manfred Conrath</strong>
+                        <span>P&aelig;dagogisk konsulent<br>Folkeskolel&aelig;rer med Diplom i P&aelig;dagogik (PD)</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p class="section-label">Om mig</p>
+                    <h2>Teknologi forst&aring;et og formidlet til praksis</h2>
+                    <p>Jeg har en baggrund inden for teknologi og l&aelig;ring med fokus p&aring;, hvordan digitale v&aelig;rkt&oslash;jer kan skabe v&aelig;rdi og forst&aring;else i b&aring;de uddannelsessektoren og hverdagen. Min erfaring har givet mig indsigt i, hvordan teknologier som kunstig intelligens og digitale l&oslash;sninger kan bruges til at fremme kreativitet og effektivitet samt at g&oslash;re komplekse koncepter mere tilg&aelig;ngelige.</p>
+                    <p>Til dagligt arbejder jeg som p&aelig;dagogisk konsulent ved P&aelig;dagogisk Udviklingscenter Aabenraa, hvor jeg blandt andet unders&oslash;ger og vejleder om brugen af teknologi i undervisningen. Mit arbejde inkluderer implementering af IT-l&oslash;sninger, der styrker undervisningen og g&oslash;r l&aelig;ring mere engagerende.</p>
+                    <p>Som foredragsholder har jeg en passion for at formidle teknologiens muligheder p&aring; en praktisk og letforst&aring;elig m&aring;de. Uanset om det handler om kunstig intelligens i undervisningen eller teknologiske l&oslash;sninger til hverdagsudfordringer, har jeg fokus p&aring; at inspirere og give konkrete v&aelig;rkt&oslash;jer, som deltagerne kan tage med sig og anvende direkte.</p>
+
+                    <div class="about-values">
+                        <div class="value-item">
+                            <div class="value-icon">&#9889;</div>
+                            <div class="value-label">Praksis&shy;n&aelig;r</div>
+                            <div class="value-desc">Konkrete eksempler og anvendelse</div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">&#128161;</div>
+                            <div class="value-label">Tydelig</div>
+                            <div class="value-desc">Komplekse emner forklaret klart</div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">&#127919;</div>
+                            <div class="value-label">Relevant</div>
+                            <div class="value-desc">M&aring;lrettet skole og professionel praksis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foredrag -->
+    <section class="talks" id="foredrag">
+        <div class="container">
+            <p class="section-label">Popul&aelig;re opl&aelig;g</p>
+            <h2 class="section-title">Temaer og emner</h2>
+            <p class="section-desc">Alle opl&aelig;g og workshops kan tilpasses jeres m&aring;lgruppe, kontekst og tidsramme. Kontakt mig for et skr&aelig;ddersyet forl&oslash;b.</p>
+            <div class="talks-grid">
+
+                <div class="talk-card">
+                    <div class="talk-icon">&#129302;</div>
+                    <h3>AI i undervisningen &mdash; inddrag eleverne</h3>
+                    <p>Hvordan kan v&aelig;rkt&oslash;jer som ChatGPT styrke l&aelig;ring og undervisning? F&aring; konkrete id&eacute;er til at inddrage AI i jeres daglige praksis p&aring; en ansvarlig og engagerende m&aring;de.</p>
+                    <span class="talk-meta">90&ndash;120 min &middot; Opl&aelig;g eller workshop &middot; Kan tilpasses</span>
+                </div>
+
+                <div class="talk-card">
+                    <div class="talk-icon">&#128187;</div>
+                    <h3>ChatGPT &mdash; muligheder, faldgruber og god brug</h3>
+                    <p>En grundig introduktion til ChatGPT og generativ AI med fokus p&aring; egen forberedelse. Hvad kan det, hvad kan det ikke, og hvordan bruger I det klogt?</p>
+                    <span class="talk-meta">90&ndash;120 min &middot; Opl&aelig;g eller workshop &middot; Kan tilpasses</span>
+                </div>
+
+                <div class="talk-card">
+                    <div class="talk-icon">&#128268;</div>
+                    <h3>Teknologiforst&aring;else &mdash; hvad betyder det i praksis?</h3>
+                    <p>Hvordan vil teknologi &aelig;ndre vores samfund og arbejdsformer? Inspiration til at bruge teknologi aktivt og kreativt i b&aring;de undervisning og hverdag.</p>
+                    <span class="talk-meta">90&ndash;120 min &middot; Opl&aelig;g eller workshop &middot; Kan tilpasses</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience -->
+    <section id="malgruppe">
+        <div class="container">
+            <p class="section-label">M&aring;lgruppe</p>
+            <h2 class="section-title">Hvem er opl&aelig;ggene for?</h2>
+            <p class="section-desc">Mine foredrag og opl&aelig;g er m&aring;lrettet en bred vifte af interessenter &mdash; fra klasselokalet til ledelsesgangen.</p>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>&#127891; Uddannelsessektoren</h3>
+                    <p>L&aelig;rere, skoleledere, p&aelig;dagoger og studerende der vil forst&aring; og anvende teknologi i undervisningen.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>&#127970; Virksomheder</h3>
+                    <p>Teams og ledere, der &oslash;nsker indsigt i teknologiens potentiale og praktisk anvendelse i organisationen.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>&#127760; Privatpersoner og foreninger</h3>
+                    <p>Enhver, der er nysgerrig p&aring; teknologiens rolle i vores hverdag og fremtid.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="resources" id="ressourcer">
+        <div class="container">
+            <div class="resource-banner">
+                <div>
+                    <h3>AI-v&aelig;rkt&oslash;jer &mdash; en kurateret samling</h3>
+                    <p>Udforsk nyttige ressourcer, artikler og v&aelig;rkt&oslash;jer inden for AI og teknologi, som du kan anvende direkte.</p>
+                </div>
+                <a href="https://padlet.com/ManfredC/ai-v-rkt-jer-4wi4prpa1qorq7pc" target="_blank" rel="noopener" class="btn btn-accent">Se AI-v&aelig;rkt&oslash;jer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Har I s&aelig;rlige behov eller &oslash;nsker?</h2>
+            <p>Jeg tilbyder ogs&aring; skr&aelig;ddersyede opl&aelig;g, der matcher jeres interesser og udfordringer. Lad os tale om mulighederne.</p>
+            <a href="#kontakt" class="btn btn-primary">Kontakt mig</a>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section class="contact" id="kontakt">
+        <div class="container">
+            <p class="section-label">Kontakt</p>
+            <h2 class="section-title">Lad os tale sammen</h2>
+            <p class="section-desc">Skriv direkte eller udfyld formularen. Jeg vender tilbage hurtigst muligt med et uforpligtende tilbud.</p>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Manfred Conrath</h3>
+                    <p>Fremtidens Foredrag</p>
+
+                    <h3>Email</h3>
+                    <p><a href="mailto:fremtidensforedrag@outlook.dk">fremtidensforedrag@outlook.dk</a></p>
+
+                    <h3>Telefon</h3>
+                    <p><a href="tel:+4528896503">28 89 65 03</a></p>
+
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/manfred-conrath-38b970196" target="_blank" rel="noopener">LinkedIn-profil</a></p>
+
+                    <h3>Praktisk info</h3>
+                    <p>Foredrag og workshops kan holdes i hele Danmark samt online. Varighed typisk 90&ndash;120 minutter. Prisen afh&aelig;nger af arrangement, varighed og rejseafstand.</p>
+
+                    <p class="contact-cvr">CVR: 41377879</p>
+                </div>
+                <form class="contact-form" action="https://formsubmit.co/fremtidensforedrag@outlook.dk" method="POST">
+                    <!-- FormSubmit settings -->
+                    <input type="hidden" name="_subject" value="Ny henvendelse fra fremtidensforedrag.dk">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://www.fremtidensforedrag.dk/#tak">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <div class="form-group">
+                        <label for="name">Navn</label>
+                        <input type="text" id="name" name="Navn" required placeholder="Dit navn">
+                    </div>
+                    <div class="form-group">
+                        <label for="org">Organisation</label>
+                        <input type="text" id="org" name="Organisation" placeholder="Skole, virksomhed eller forening">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" required placeholder="Din email-adresse">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Besked</label>
+                        <textarea id="message" name="Besked" required placeholder="Fort&aelig;l mig om jeres arrangement, &oslash;nsket emne, dato og antal deltagere..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Send besked</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thank you message (shown after form submit) -->
+    <section id="tak" style="display:none; padding:80px 0; text-align:center;">
+        <div class="container">
+            <h2 class="section-title">Tak for din besked!</h2>
+            <p class="section-desc" style="margin:0 auto;">Jeg har modtaget din henvendelse og vender tilbage hurtigst muligt.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p>&copy; 2026 Fremtidens Foredrag. Manfred Conrath. Alle rettigheder forbeholdes.</p>
+                <div class="footer-links">
+                    <a href="mailto:fremtidensforedrag@outlook.dk">Email</a>
+                    <a href="tel:+4528896503">Telefon</a>
+                    <a href="https://www.linkedin.com/in/manfred-conrath-38b970196" target="_blank" rel="noopener" class="linkedin-icon" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu toggle
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => links.classList.remove('open'));
+        });
+
+        // Smooth reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Show thank-you section if redirected back after form submit
+        if (window.location.hash === '#tak') {
+            const takEl = document.getElementById('tak');
+            if (takEl) takEl.style.display = 'block';
+        }
+
+        document.querySelectorAll('.service-card, .talk-card, .audience-card, .about-grid, .contact-grid, .resource-banner').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
