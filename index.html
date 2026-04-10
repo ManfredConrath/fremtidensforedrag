@@ -98,19 +98,50 @@
         }
 
         /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
-            color: #fff; position: relative; overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at 70% 30%, rgba(74,90,207,0.3) 0%, transparent 60%);
-        }
-        .hero-content { position: relative; z-index: 1; padding: 120px 0 80px; }
-        .hero-eyebrow {
-            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-            color: rgba(255,255,255,0.7); margin-bottom: 20px;
+        /* ===== HERO ===== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 72% 30%, rgba(140, 155, 255, 0.22) 0%, transparent 20%),
+        radial-gradient(circle at 78% 42%, rgba(173, 120, 255, 0.16) 0%, transparent 24%),
+        radial-gradient(circle at 64% 50%, rgba(255,255,255,0.05) 0%, transparent 42%);
+    z-index: 0;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('hero-network.webp');
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+    opacity: 0.58;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 120px 0 80px;
+}
+
+.hero-eyebrow {
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
         }
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.15;
@@ -288,8 +319,19 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .services-grid, .audience-grid { grid-template-columns: 1fr; }
-        }
+    .services-grid, .audience-grid { grid-template-columns: 1fr; }
+
+    .hero::after {
+        background-size: 145%;
+        background-position: 140% center;
+        opacity: 0.28;
+    }
+
+    .hero::before {
+        background:
+            radial-gradient(circle at 72% 28%, rgba(140, 155, 255, 0.16) 0%, transparent 22%);
+    }
+}
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .nav-links.open {
