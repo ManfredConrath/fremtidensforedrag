@@ -5,28 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fremtidens Foredrag — Manfred Conrath</title>
     <meta name="description" content="Oplæg og workshops om AI, teknologi og undervisning. Manfred Conrath hjælper skoler, undervisere, ledere og organisationer med at forstå kunstig intelligens og teknologiforståelse.">
-
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.fremtidensforedrag.dk/">
-
     <meta property="og:title" content="Fremtidens Foredrag — Manfred Conrath">
     <meta property="og:description" content="Oplæg og workshops om AI, teknologi og undervisning.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.fremtidensforedrag.dk/">
     <meta property="og:image" content="https://www.fremtidensforedrag.dk/manfred.jpg">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fremtidens Foredrag — Manfred Conrath">
     <meta name="twitter:description" content="Oplæg og workshops om AI, teknologi og undervisning.">
     <meta name="twitter:image" content="https://www.fremtidensforedrag.dk/manfred.jpg">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== RESET & BASE ===== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
             --color-bg: #f8f9fa;
             --color-surface: #ffffff;
@@ -42,118 +36,65 @@
             --max-width: 1100px;
             --radius: 12px;
         }
-
         html { scroll-behavior: smooth; font-size: 16px; }
-
-        body {
-            font-family: var(--font);
-            color: var(--color-text);
-            background: var(--color-bg);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-
+        body { font-family: var(--font); color: var(--color-text); background: var(--color-bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
         img { max-width: 100%; display: block; }
         a { color: var(--color-accent); text-decoration: none; }
         a:hover { color: var(--color-accent-light); }
-
         .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
 
         /* ===== NAVIGATION ===== */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--color-border);
-            transition: box-shadow 0.3s;
+            background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border); transition: box-shadow 0.3s;
         }
         .nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
         .nav-inner {
             max-width: var(--max-width); margin: 0 auto; padding: 0 24px;
-            display: flex; align-items: center; justify-content: space-between;
-            height: 72px;
+            display: flex; align-items: center; justify-content: space-between; height: 72px;
         }
-        .nav-logo {
-            font-weight: 700; font-size: 1.15rem; color: var(--color-text);
-            letter-spacing: -0.02em;
-        }
+        .nav-logo { font-weight: 700; font-size: 1.15rem; color: var(--color-text); letter-spacing: -0.02em; }
         .nav-logo span { color: var(--color-accent); }
         .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a {
-            color: var(--color-text-muted); font-size: 0.9rem; font-weight: 500;
-            transition: color 0.2s; position: relative;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--color-text); }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
-            background: var(--color-accent); transition: width 0.2s;
-        }
+        .nav-links a { color: var(--color-text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-links a:hover { color: var(--color-text); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--color-accent); transition: width 0.2s; }
         .nav-links a:hover::after { width: 100%; }
-
-        /* Mobile menu */
         .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-        .nav-toggle span {
-            display: block; width: 24px; height: 2px; background: var(--color-text);
-            margin: 6px 0; transition: 0.3s;
-        }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--color-text); margin: 6px 0; transition: 0.3s; }
 
         /* ===== HERO ===== */
-        /* ===== HERO ===== */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 72% 30%, rgba(140, 155, 255, 0.22) 0%, transparent 20%),
-        radial-gradient(circle at 78% 42%, rgba(173, 120, 255, 0.16) 0%, transparent 24%),
-        radial-gradient(circle at 64% 50%, rgba(255,255,255,0.05) 0%, transparent 42%);
-    z-index: 0;
-}
-
-.hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('hero-network.webp');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 58%;
-    opacity: 0.34;
-    mix-blend-mode: screen;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    padding: 120px 0 80px;
-}
-
-.hero-eyebrow {
-    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
+            color: #fff; position: relative; overflow: hidden;
         }
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.15;
-            letter-spacing: -0.03em; margin-bottom: 24px; max-width: 720px;
+        /* Canvas sits on the right half, behind content */
+        #heroCanvas {
+            position: absolute;
+            top: 0; right: 0;
+            width: 60%; height: 100%;
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 0;
         }
-        .hero p {
-            font-size: 1.15rem; line-height: 1.8; color: rgba(255,255,255,0.85);
-            max-width: 580px; margin-bottom: 40px;
+        /* Gradient fade so canvas blends left into the dark background */
+        .hero-canvas-fade {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, #1a1a2e 20%, transparent 55%);
+            z-index: 1;
+            pointer-events: none;
         }
+        .hero-content { position: relative; z-index: 2; padding: 120px 0 80px; }
+        .hero-eyebrow {
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(255,255,255,0.7); margin-bottom: 20px;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 24px; max-width: 640px; }
+        .hero > .container > p { font-size: 1.15rem; line-height: 1.8; color: rgba(255,255,255,0.85); max-width: 540px; margin-bottom: 40px; }
         .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-
-        /* Hero tags */
         .hero-tags { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
         .hero-tag {
             display: inline-flex; align-items: center; gap: 6px;
@@ -162,12 +103,8 @@
             font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.9);
         }
 
-        /* Buttons */
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
-            transition: all 0.2s; cursor: pointer; border: none;
-        }
+        /* ===== BUTTONS ===== */
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; transition: all 0.2s; cursor: pointer; border: none; }
         .btn-primary { background: #fff; color: var(--color-accent); }
         .btn-primary:hover { background: var(--color-accent-subtle); color: var(--color-accent); transform: translateY(-1px); }
         .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); }
@@ -177,60 +114,30 @@
 
         /* ===== SECTIONS ===== */
         section { padding: 100px 0; }
-        .section-label {
-            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--color-accent); margin-bottom: 12px;
-        }
-        .section-title {
-            font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700;
-            letter-spacing: -0.02em; margin-bottom: 20px; line-height: 1.2;
-        }
-        .section-desc {
-            font-size: 1.05rem; color: var(--color-text-muted); max-width: 620px; margin-bottom: 48px;
-        }
+        .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 12px; }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; line-height: 1.2; }
+        .section-desc { font-size: 1.05rem; color: var(--color-text-muted); max-width: 620px; margin-bottom: 48px; }
 
-        /* ===== SERVICES (3 cards) ===== */
+        /* ===== SERVICES ===== */
         .services { background: var(--color-surface); }
         .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .service-card {
-            padding: 36px; border: 1px solid var(--color-border);
-            border-radius: var(--radius); transition: all 0.3s; background: var(--color-bg);
-        }
+        .service-card { padding: 36px; border: 1px solid var(--color-border); border-radius: var(--radius); transition: all 0.3s; background: var(--color-bg); }
         .service-card:hover { border-color: var(--color-accent); box-shadow: 0 8px 30px rgba(45,58,140,0.08); transform: translateY(-2px); }
-        .service-icon {
-            width: 52px; height: 52px; border-radius: 12px; background: var(--color-accent-subtle);
-            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
+        .service-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--color-accent-subtle); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.5rem; }
         .service-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
         .service-card p { font-size: 0.95rem; color: var(--color-text-muted); }
 
         /* ===== ABOUT ===== */
-        .about-grid {
-            display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: start;
-        }
-        .about-image-wrapper {
-            position: sticky; top: 100px;
-        }
-        .about-image {
-            width: 100%; aspect-ratio: 3/4; border-radius: var(--radius);
-            background: linear-gradient(135deg, #e8eaf6, #c5cae9);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--color-text-muted); font-size: 0.9rem; overflow: hidden;
-        }
+        .about-grid { display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: start; }
+        .about-image-wrapper { position: sticky; top: 100px; }
+        .about-image { width: 100%; aspect-ratio: 3/4; border-radius: var(--radius); background: linear-gradient(135deg, #e8eaf6, #c5cae9); display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); font-size: 0.9rem; overflow: hidden; }
         .about-image img { width: 100%; height: 100%; object-fit: cover; }
-        .about-meta {
-            margin-top: 16px; padding: 16px; background: var(--color-accent-subtle);
-            border-radius: 8px; font-size: 0.88rem;
-        }
+        .about-meta { margin-top: 16px; padding: 16px; background: var(--color-accent-subtle); border-radius: 8px; font-size: 0.88rem; }
         .about-meta strong { display: block; color: var(--color-text); margin-bottom: 4px; }
         .about-meta span { color: var(--color-text-muted); }
         .about-text h2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
         .about-text p { color: var(--color-text-muted); margin-bottom: 16px; font-size: 1.02rem; }
-        .about-values {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-            margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--color-border);
-        }
+        .about-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--color-border); }
         .value-item { text-align: center; padding: 16px 8px; }
         .value-icon { font-size: 1.5rem; margin-bottom: 8px; }
         .value-label { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
@@ -239,47 +146,27 @@
         /* ===== TALKS ===== */
         .talks { background: var(--color-surface); }
         .talks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-        .talk-card {
-            background: var(--color-bg); border: 1px solid var(--color-border);
-            border-radius: var(--radius); padding: 36px; transition: all 0.3s;
-            display: flex; flex-direction: column;
-        }
+        .talk-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 36px; transition: all 0.3s; display: flex; flex-direction: column; }
         .talk-card:hover { border-color: var(--color-accent); box-shadow: 0 8px 30px rgba(45,58,140,0.08); transform: translateY(-2px); }
-        .talk-icon {
-            width: 48px; height: 48px; border-radius: 10px; background: var(--color-accent-subtle);
-            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
+        .talk-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--color-accent-subtle); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.3rem; }
         .talk-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; }
         .talk-card p { font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 16px; flex-grow: 1; }
         .talk-meta { font-size: 0.8rem; color: var(--color-accent); font-weight: 500; }
 
         /* ===== AUDIENCE ===== */
-        .audience-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-        }
-        .audience-card {
-            padding: 32px; background: var(--color-surface);
-            border: 1px solid var(--color-border); border-radius: var(--radius);
-        }
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .audience-card { padding: 32px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); }
         .audience-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
         .audience-card p { font-size: 0.9rem; color: var(--color-text-muted); }
 
         /* ===== RESOURCES ===== */
         .resources { background: var(--color-surface); }
-        .resource-banner {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 40px 48px; background: var(--color-accent-subtle);
-            border-radius: var(--radius); gap: 32px;
-        }
+        .resource-banner { display: flex; align-items: center; justify-content: space-between; padding: 40px 48px; background: var(--color-accent-subtle); border-radius: var(--radius); gap: 32px; }
         .resource-banner h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
         .resource-banner p { font-size: 0.95rem; color: var(--color-text-muted); }
 
         /* ===== CTA ===== */
-        .cta {
-            background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
-            color: #fff; text-align: center; padding: 80px 0;
-        }
+        .cta { background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end)); color: #fff; text-align: center; padding: 80px 0; }
         .cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
         .cta p { color: rgba(255,255,255,0.8); margin-bottom: 32px; font-size: 1.05rem; }
 
@@ -291,55 +178,30 @@
         .contact-info p { color: var(--color-text-muted); font-size: 0.95rem; }
         .contact-info a { color: var(--color-accent); font-weight: 500; }
         .contact-cvr { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--color-border); font-size: 0.85rem; color: var(--color-text-muted); }
-
         .contact-form { display: flex; flex-direction: column; gap: 16px; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 6px; }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 12px 16px; border: 1px solid var(--color-border);
-            border-radius: 8px; font-family: var(--font); font-size: 0.95rem;
-            transition: border-color 0.2s; background: var(--color-bg);
-        }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--color-border); border-radius: 8px; font-family: var(--font); font-size: 0.95rem; transition: border-color 0.2s; background: var(--color-bg); }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--color-accent); }
         .form-group textarea { resize: vertical; min-height: 120px; }
 
         /* ===== FOOTER ===== */
-        .footer {
-            padding: 40px 0; border-top: 1px solid var(--color-border);
-            font-size: 0.85rem; color: var(--color-text-muted);
-        }
-        .footer-inner {
-            display: flex; align-items: center; justify-content: space-between;
-        }
+        .footer { padding: 40px 0; border-top: 1px solid var(--color-border); font-size: 0.85rem; color: var(--color-text-muted); }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; }
         .footer-links { display: flex; gap: 20px; }
         .footer-links a { color: var(--color-text-muted); transition: color 0.2s; }
         .footer-links a:hover { color: var(--color-accent); }
-        /* LinkedIn icon */
         .linkedin-icon { display: inline-flex; align-items: center; }
         .linkedin-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-    .services-grid, .audience-grid { grid-template-columns: 1fr; }
-
-    .hero::after {
-        background-size: 145%;
-        background-position: 140% center;
-        opacity: 0.28;
-    }
-
-    .hero::before {
-        background:
-            radial-gradient(circle at 72% 28%, rgba(140, 155, 255, 0.16) 0%, transparent 22%);
-    }
-}
+            .services-grid, .audience-grid { grid-template-columns: 1fr; }
+            #heroCanvas { width: 100%; opacity: 0.25; }
+            .hero-canvas-fade { background: linear-gradient(to right, #1a1a2e 10%, transparent 60%); }
+        }
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .nav-links.open {
-                display: flex; flex-direction: column; position: absolute;
-                top: 72px; left: 0; right: 0; background: var(--color-surface);
-                padding: 24px; gap: 20px; border-bottom: 1px solid var(--color-border);
-                box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--color-surface); padding: 24px; gap: 20px; border-bottom: 1px solid var(--color-border); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
             .nav-toggle { display: block; }
             .about-grid, .contact-grid { grid-template-columns: 1fr; }
             .about-image-wrapper { position: static; }
@@ -372,12 +234,17 @@
 
     <!-- Hero -->
     <section class="hero" id="hero">
+        <!-- Neural network canvas (right side) -->
+        <canvas id="heroCanvas"></canvas>
+        <!-- Fade overlay so canvas blends smoothly into background -->
+        <div class="hero-canvas-fade"></div>
+
         <div class="container hero-content">
             <p class="hero-eyebrow">Manfred Conrath &mdash; Foredragsholder &amp; p&aelig;dagogisk konsulent</p>
             <h1>Opl&aelig;g og workshops om AI, teknologi og undervisning</h1>
             <p>Jeg hj&aelig;lper skoler, undervisere, ledere og organisationer med at forst&aring; kunstig intelligens, teknologiforst&aring;else og de valg, der f&oslash;lger med.</p>
             <div class="hero-tags">
-                <span class="hero-tag">Praksis&shy;n&aelig;r</span>
+                <span class="hero-tag">Praksisnær</span>
                 <span class="hero-tag">Tydelig</span>
                 <span class="hero-tag">Relevant</span>
             </div>
@@ -433,11 +300,10 @@
                     <p>Jeg har en baggrund inden for teknologi og l&aelig;ring med fokus p&aring;, hvordan digitale v&aelig;rkt&oslash;jer kan skabe v&aelig;rdi og forst&aring;else i b&aring;de uddannelsessektoren og hverdagen. Min erfaring har givet mig indsigt i, hvordan teknologier som kunstig intelligens og digitale l&oslash;sninger kan bruges til at fremme kreativitet og effektivitet samt at g&oslash;re komplekse koncepter mere tilg&aelig;ngelige.</p>
                     <p>Til dagligt arbejder jeg som p&aelig;dagogisk konsulent ved P&aelig;dagogisk Udviklingscenter Aabenraa, hvor jeg blandt andet unders&oslash;ger og vejleder om brugen af teknologi i undervisningen. Mit arbejde inkluderer implementering af IT-l&oslash;sninger, der styrker undervisningen og g&oslash;r l&aelig;ring mere engagerende.</p>
                     <p>Som foredragsholder har jeg en passion for at formidle teknologiens muligheder p&aring; en praktisk og letforst&aring;elig m&aring;de. Uanset om det handler om kunstig intelligens i undervisningen eller teknologiske l&oslash;sninger til hverdagsudfordringer, har jeg fokus p&aring; at inspirere og give konkrete v&aelig;rkt&oslash;jer, som deltagerne kan tage med sig og anvende direkte.</p>
-
                     <div class="about-values">
                         <div class="value-item">
                             <div class="value-icon">&#9889;</div>
-                            <div class="value-label">Praksis&shy;n&aelig;r</div>
+                            <div class="value-label">Praksisnær</div>
                             <div class="value-desc">Konkrete eksempler og anvendelse</div>
                         </div>
                         <div class="value-item">
@@ -463,28 +329,24 @@
             <h2 class="section-title">Temaer og emner</h2>
             <p class="section-desc">Alle opl&aelig;g og workshops kan tilpasses jeres m&aring;lgruppe, kontekst og tidsramme. Kontakt mig for et skr&aelig;ddersyet forl&oslash;b.</p>
             <div class="talks-grid">
-
                 <div class="talk-card">
                     <div class="talk-icon">&#129302;</div>
                     <h3>AI i undervisningen &mdash; inddrag eleverne</h3>
                     <p>Hvordan kan v&aelig;rkt&oslash;jer som ChatGPT styrke l&aelig;ring og undervisning? F&aring; konkrete id&eacute;er til at inddrage AI i jeres daglige praksis p&aring; en ansvarlig og engagerende m&aring;de.</p>
                     <span class="talk-meta">90&ndash;120 min &middot; Opl&aelig;g eller workshop &middot; Kan tilpasses</span>
                 </div>
-
                 <div class="talk-card">
                     <div class="talk-icon">&#128187;</div>
                     <h3>ChatGPT &mdash; muligheder, faldgruber og god brug</h3>
                     <p>En grundig introduktion til ChatGPT og generativ AI med fokus p&aring; egen forberedelse. Hvad kan det, hvad kan det ikke, og hvordan bruger I det klogt?</p>
                     <span class="talk-meta">90&ndash;120 min &middot; Opl&aelig;g eller workshop &middot; Kan tilpasses</span>
                 </div>
-
                 <div class="talk-card">
                     <div class="talk-icon">&#128268;</div>
                     <h3>Teknologiforst&aring;else &mdash; hvad betyder det i praksis?</h3>
                     <p>Hvordan vil teknologi &aelig;ndre vores samfund og arbejdsformer? Inspiration til at bruge teknologi aktivt og kreativt i b&aring;de undervisning og hverdag.</p>
                     <span class="talk-meta">90&ndash;120 min &middot; Opl&aelig;g eller workshop &middot; Kan tilpasses</span>
                 </div>
-
             </div>
         </div>
     </section>
@@ -544,29 +406,22 @@
                 <div class="contact-info">
                     <h3>Manfred Conrath</h3>
                     <p>Fremtidens Foredrag</p>
-
                     <h3>Email</h3>
                     <p><a href="mailto:fremtidensforedrag@outlook.dk">fremtidensforedrag@outlook.dk</a></p>
-
                     <h3>Telefon</h3>
                     <p><a href="tel:+4528896503">28 89 65 03</a></p>
-
                     <h3>LinkedIn</h3>
                     <p><a href="https://www.linkedin.com/in/manfred-conrath-38b970196" target="_blank" rel="noopener">LinkedIn-profil</a></p>
-
                     <h3>Praktisk info</h3>
                     <p>Foredrag og workshops kan holdes i hele Danmark samt online. Varighed typisk 90&ndash;120 minutter. Prisen afh&aelig;nger af arrangement, varighed og rejseafstand.</p>
-
                     <p class="contact-cvr">CVR: 41377879</p>
                 </div>
                 <form class="contact-form" action="https://formsubmit.co/fremtidensforedrag@outlook.dk" method="POST">
-                    <!-- FormSubmit settings -->
                     <input type="hidden" name="_subject" value="Ny henvendelse fra fremtidensforedrag.dk">
                     <input type="hidden" name="_captcha" value="true">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_next" value="https://www.fremtidensforedrag.dk/#tak">
                     <input type="text" name="_honey" style="display:none">
-
                     <div class="form-group">
                         <label for="name">Navn</label>
                         <input type="text" id="name" name="Navn" required placeholder="Dit navn">
@@ -589,7 +444,6 @@
         </div>
     </section>
 
-    <!-- Thank you message (shown after form submit) -->
     <section id="tak" style="display:none; padding:80px 0; text-align:center;">
         <div class="container">
             <h2 class="section-title">Tak for din besked!</h2>
@@ -614,44 +468,121 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 20);
-        });
+    // ===== NEURAL NETWORK CANVAS =====
+    (function() {
+        const canvas = document.getElementById('heroCanvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, nodes, animId;
 
-        // Mobile menu toggle
-        const toggle = document.getElementById('navToggle');
-        const links = document.getElementById('navLinks');
-        toggle.addEventListener('click', () => links.classList.toggle('open'));
-
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => links.classList.remove('open'));
-        });
-
-        // Smooth reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // Show thank-you section if redirected back after form submit
-        if (window.location.hash === '#tak') {
-            const takEl = document.getElementById('tak');
-            if (takEl) takEl.style.display = 'block';
+        function resize() {
+            W = canvas.offsetWidth;
+            H = canvas.offsetHeight;
+            canvas.width = W;
+            canvas.height = H;
+            initNodes();
         }
 
-        document.querySelectorAll('.service-card, .talk-card, .audience-card, .about-grid, .contact-grid, .resource-banner').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+        function initNodes() {
+            const count = Math.floor((W * H) / 14000);
+            nodes = Array.from({ length: Math.max(count, 30) }, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                r: Math.random() * 2.5 + 1
+            }));
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            const maxDist = 160;
+
+            // Draw edges
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < maxDist) {
+                        const alpha = (1 - dist / maxDist) * 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = `rgba(160, 180, 255, ${alpha})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw nodes with glow
+            nodes.forEach(n => {
+                // Outer glow
+                const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
+                grad.addColorStop(0, 'rgba(180, 200, 255, 0.6)');
+                grad.addColorStop(1, 'rgba(180, 200, 255, 0)');
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // Core dot
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(220, 230, 255, 0.9)';
+                ctx.fill();
+            });
+
+            // Move nodes
+            nodes.forEach(n => {
+                n.x += n.vx;
+                n.y += n.vy;
+                if (n.x < 0 || n.x > W) n.vx *= -1;
+                if (n.y < 0 || n.y > H) n.vy *= -1;
+            });
+
+            animId = requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', () => {
+            cancelAnimationFrame(animId);
+            resize();
+            draw();
         });
+
+        resize();
+        draw();
+    })();
+
+    // ===== NAVBAR =====
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+
+    // ===== MOBILE MENU =====
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => links.classList.remove('open')));
+
+    // ===== THANK YOU =====
+    if (window.location.hash === '#tak') {
+        const el = document.getElementById('tak');
+        if (el) el.style.display = 'block';
+    }
+
+    // ===== SCROLL REVEAL =====
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.service-card, .talk-card, .audience-card, .about-grid, .contact-grid, .resource-banner').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
     </script>
 </body>
 </html>
